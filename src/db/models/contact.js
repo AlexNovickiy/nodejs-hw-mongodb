@@ -2,29 +2,30 @@
 
 import { model, Schema } from 'mongoose';
 
-const studentsSchema = new Schema(
+const contactsSchema = new Schema(
   {
     name: {
       type: String,
       required: true,
     },
-    age: {
-      type: Number,
-      required: true,
-    },
-    gender: {
+    phoneNumber: {
       type: String,
       required: true,
-      enum: ['male', 'female', 'other'],
     },
-    avgMark: {
-      type: Number,
+    email: {
+      type: String,
       required: true,
     },
-    onDuty: {
+    isFavourite: {
       type: Boolean,
       required: true,
       default: false,
+    },
+
+    contactType: {
+      type: String,
+      required: true,
+      enum: ['personal', 'home'],
     },
   },
   {
@@ -33,4 +34,4 @@ const studentsSchema = new Schema(
   },
 );
 
-export const StudentsCollection = model('students', studentsSchema);
+export const ContactsCollection = model('contacts', contactsSchema);
