@@ -63,7 +63,7 @@
             "name": "sortBy",
             "schema": {
               "type": "string",
-              "example": "age"
+              "example": "name"
             },
             "description": "All contacts's fields can be mentioned. Default value - _id"
           },
