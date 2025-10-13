@@ -1,19 +1,22 @@
 tags:
   - Contacts
-summary: Create contact
-operationId: createContact
-description: 'Create a contact with payload'
+summary: Update contact
+operationId: updateContact
+description: 'Update a contact with payload'
 security:
   - bearerAuth: []
+parameters:
+  - in: path
+    name: contactId
+    required: true
+    schema:
+      type: string
+      example: '65ca67e7ae7f10c88b598384'
 requestBody:
   content:
-    multipart/form-data:
+    application/json:
       schema:
         type: object
-        required:
-          - name
-          - phoneNumber
-          - contactType
         properties:
           name:
             description: "Contact's name"
@@ -27,8 +30,8 @@ requestBody:
             description: "Contact's email"
             type: string
             example: 'john.doe@example.com'
-          isFavourite:
-            description: 'Is contact favourite'
+          isFavorite:
+            description: 'Is contact favorite'
             type: boolean
             example: false
           contactType:
@@ -37,7 +40,7 @@ requestBody:
             enum: ['work', 'home', 'personal']
 responses:
   '201':
-    description: Creates a contact
+    description: Updated a contact
     content:
       application/json:
         schema:
@@ -49,12 +52,12 @@ responses:
           properties:
             status:
               type: integer
-              example: 201
+              example: 200
             message:
               type: string
-              example: Successfully created a contact!
+              example: Successfully updated a contact!
             data:
               type: object
-              $ref: ../../components/schemas/contact.yaml
+              $ref: '../../../components/schemas/contact.yaml'
   '401':
-    $ref: '../../components/responses/401.yaml'
+    $ref: '../../../components/responses/401.yaml'
